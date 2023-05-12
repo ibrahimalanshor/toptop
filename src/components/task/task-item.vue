@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import { useTaskStore } from '@/store/modules/task.module.js'
 import TaskEditModal from '@/components/task/task-edit-modal.vue';
 
@@ -9,6 +9,14 @@ const props = defineProps({
 
 const taskStore = useTaskStore()
 
+const isDone = computed({
+  get: function () {
+    return props.task.done
+  },
+  set: function (value) {
+    taskStore.update(props.task.id, { done: value })
+  }
+})
 const editTaskModal = reactive({
   visible: false,
   task: null
@@ -26,7 +34,7 @@ function handleEdit() {
 <template>
   <div class="relative flex items-start">
     <div class="flex h-6 items-center">
-      <input :id="`task-${props.task.id}`" aria-describedby="comments-description" name="comments" type="checkbox" class="h-4 w-4 rounded-full border-gray-300 text-blue-600 focus:ring-blue-600" v-model="props.task.done" />
+      <input :id="`task-${props.task.id}`" aria-describedby="comments-description" name="comments" type="checkbox" class="h-4 w-4 rounded-full border-gray-300 text-blue-600 focus:ring-blue-600" v-model="isDone" />
     </div>
     <div class="ml-3 text-sm leading-6 flex items-center gap-x-2 group">
       <label :for="`task-${props.task.id}`" class="font-medium text-gray-900" :class="{ 'line-through': props.task.done }">{{ props.task.name }}</label>

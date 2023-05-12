@@ -44,11 +44,11 @@ export const useTaskStore = defineStore(
     function update(id, values) {
       const index = findTaskIndex(id);
 
-      if (values.name) {
+      if (values.name !== undefined) {
         tasks.value[index].name = values.name;
       }
 
-      if (values.done) {
+      if (values.done !== undefined) {
         tasks.value[index].done = values.done;
       }
     }
