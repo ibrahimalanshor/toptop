@@ -1,0 +1,36 @@
+{
+  "name": "toptop",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && copyfiles manifest.json dist",
+    "preview": "vite preview",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "click-outside-vue3": "^4.0.1",
+    "pinia": "^2.0.36",
+    "pinia-plugin-persistedstate": "^3.1.0",
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
+    "@vitejs/plugin-vue": "^4.1.0",
+    "autoprefixer": "^10.4.14",
+    "copyfiles": "^2.4.1",
+    "eslint": "^8.40.0",
+    "eslint-plugin-vue": "^9.12.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "postcss": "^8.4.23",
+    "prettier": "2.8.8",
+    "tailwindcss": "^3.3.2",
+    "vite": "^4.3.2"
+  },
+  "lint-staged": {
+    "*.{ts,js}": "eslint --cache --fix",
+    "*.{ts,js,css,md}": "prettier --write"
+  }
+}

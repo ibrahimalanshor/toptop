@@ -1,0 +1,10 @@
+{
+    "manifest_version": 3,
+    "name": "TopTop",
+    "description": "Simple Task Manager",
+    "version": "1.0.0",
+    "action": {
+      "default_popup": "index.html",
+      "default_icon": "favicon/favicon-16x16.png"
+    }
+  }
