@@ -9,14 +9,20 @@ export const useTaskStore = defineStore(
 
     function save(task) {
       tasks.value.push({
-        id: tasksSize.value ? tasksSize.value - 1 : 1,
+        id: tasksSize.value ? tasksSize.value + 1 : 1,
         name: task.name,
         done: false,
       });
     }
 
     function getAll(query) {
-      const filter = (task) => task.done === query.done;
+      const filter = (task) => {
+        if (query.done === null) {
+          return true;
+        }
+
+        return task.done === query.done;
+      };
       const data = tasks.value.filter(filter);
 
       return {

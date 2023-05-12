@@ -8,7 +8,6 @@ import TaskCreateModal from './components/task/task-create-modal.vue'
 import TaskCreateFloatButton from './components/task/task-create-float-button.vue';
 
 const taskStore = useTaskStore()
-const tabActive = ref('task')
 const visibleCreateModal = ref(false)
 
 const query = reactive({
@@ -24,7 +23,7 @@ function handleCreate() {
 <template>
   <div class="max-w-[24rem] min-w-[24rem] min-h-[24rem] w-full">
     <div>
-      <task-filter-tab v-model="tabActive" />
+      <task-filter-tab v-model="query.done" />
     </div>
     <div class="space-y-5 p-5">
       <template v-if="tasks.count">

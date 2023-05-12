@@ -15,13 +15,16 @@ const active = computed({
     }
 })
 const tabs = [
-  { id: 'all', name: 'All' },
-  { id: 'task', name: 'Task' },
-  { id: 'done', name: 'Done' }
+  { id: 'all', name: 'All', value: null },
+  { id: 'task', name: 'Task', value: false },
+  { id: 'done', name: 'Done', value: true }
 ]
 
+function checkIsActive(tab) {
+    return tab.value === active.value
+}
 function handleClick(tab) {
-    active.value = tab.id
+    active.value = tab.value
 }
 </script>
 
@@ -29,7 +32,7 @@ function handleClick(tab) {
     <div class="border-b border-gray-200">
         <nav class="-mb-px flex" aria-label="Tabs">
             <a v-for="tab in tabs" :key="tab.id" href="#" class="flex-grow border-b-2 py-4 px-1 text-center text-sm font-medium"
-                :class="[active === tab.id ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700']"
+                :class="[checkIsActive(tab) ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700']"
                 v-on:click="handleClick(tab)"
             >
                 {{ tab.name }}
