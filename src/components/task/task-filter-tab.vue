@@ -4,7 +4,7 @@ import { computed } from 'vue'
 const props = defineProps({
     modelValue: null
 })
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'change'])
 
 const active = computed({
     get: function () {
@@ -25,6 +25,8 @@ function checkIsActive(tab) {
 }
 function handleClick(tab) {
     active.value = tab.value
+
+    emit('change')
 }
 </script>
 

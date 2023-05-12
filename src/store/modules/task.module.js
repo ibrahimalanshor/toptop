@@ -31,7 +31,7 @@ export const useTaskStore = defineStore(
 
       return {
         count: data.length,
-        data,
+        data: data.slice(0, query.limit),
       };
     }
 
