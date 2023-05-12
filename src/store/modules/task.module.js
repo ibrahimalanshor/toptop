@@ -31,7 +31,13 @@ export const useTaskStore = defineStore(
       };
     }
 
-    return { tasks, tasksSize, save, getAll };
+    function remove(id) {
+      const index = tasks.value.findIndex((task) => task.id === id);
+
+      tasks.value.splice(index, 1);
+    }
+
+    return { tasks, tasksSize, save, getAll, remove };
   },
   { persist: true }
 );
