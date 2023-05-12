@@ -7,7 +7,15 @@ export const useTaskStore = defineStore(
     const tasks = ref([]);
     const tasksSize = computed(() => tasks.value.length);
 
-    return { tasks, tasksSize };
+    function save(task) {
+      tasks.value.push({
+        id: tasksSize.value ? tasksSize.value - 1 : 1,
+        name: task.name,
+        done: false,
+      });
+    }
+
+    return { tasks, tasksSize, save };
   },
   { persist: true }
 );
