@@ -11,7 +11,8 @@ const taskStore = useTaskStore()
 const visibleCreateModal = ref(false)
 
 const query = reactive({
-  done: false
+  done: false,
+  limit: 10
 })
 const tasks = computed(() => taskStore.getAll(query))
 
@@ -21,8 +22,8 @@ function handleCreate() {
 </script>
 
 <template>
-  <div class="max-w-[24rem] min-w-[24rem] min-h-[24rem] w-full">
-    <div>
+  <div class="max-w-[24rem] min-w-[24rem] min-h-[24rem] max-h-[36rem] w-full overflow-y-auto">
+    <div class="bg-white sticky top-0 left-0 z-10">
       <task-filter-tab v-model="query.done" />
     </div>
     <div class="space-y-5 p-5">
