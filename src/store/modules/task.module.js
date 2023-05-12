@@ -7,6 +7,10 @@ export const useTaskStore = defineStore(
     const tasks = ref([]);
     const tasksSize = computed(() => tasks.value.length);
 
+    function findTaskIndex(id) {
+      return tasks.value.findIndex((task) => task.id === id);
+    }
+
     function save(task) {
       tasks.value.push({
         id: tasksSize.value ? tasksSize.value + 1 : 1,
@@ -32,12 +36,24 @@ export const useTaskStore = defineStore(
     }
 
     function remove(id) {
-      const index = tasks.value.findIndex((task) => task.id === id);
+      const index = findTaskIndex(id);
 
       tasks.value.splice(index, 1);
     }
 
-    return { tasks, tasksSize, save, getAll, remove };
+    function update(id, values) {
+      const index = findTaskIndex(id);
+
+      if (values.name) {
+        tasks.value[index].name = values.name;
+      }
+
+      if (values.done) {
+        tasks.value[index].done = values.done;
+      }
+    }
+
+    return { tasks, tasksSize, save, getAll, remove, update };
   },
   { persist: true }
 );

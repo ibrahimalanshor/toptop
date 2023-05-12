@@ -8,7 +8,8 @@ import UiInput from '@/components/ui/ui-input.vue';
 const taskStore = useTaskStore()
 
 const props = defineProps({
-    modelValue: Boolean
+    modelValue: Boolean,
+    task: Object
 })
 const emit = defineEmits(['update:modelValue'])
 
@@ -24,21 +25,28 @@ const form = reactive({
   name: null
 })
 
+function setForm() {
+    form.name = props.task.name
+}
 function resetForm() {
   form.name = null
 }
 
 function handleSubmit() {
-  taskStore.save(form)
+  taskStore.update(props.task.id, form)
   
   visible.value = false
 
   resetForm()
 }
+
+function handleOpen() {
+    setForm()
+}
 </script>
 
 <template>
-  <ui-modal v-model="visible">
+  <ui-modal v-model="visible" v-on:open="handleOpen">
     <form class="space-y-4" v-on:submit.prevent="handleSubmit">
       <ui-input v-model="form.name" />
       <ui-button>Save</ui-button>
