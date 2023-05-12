@@ -15,7 +15,17 @@ export const useTaskStore = defineStore(
       });
     }
 
-    return { tasks, tasksSize, save };
+    function getAll(query) {
+      const filter = (task) => task.done === query.done;
+      const data = tasks.value.filter(filter);
+
+      return {
+        count: data.length,
+        data,
+      };
+    }
+
+    return { tasks, tasksSize, save, getAll };
   },
   { persist: true }
 );
