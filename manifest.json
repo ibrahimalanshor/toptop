@@ -4,6 +4,7 @@
     "description": "TopTop",
     "version": "1.0.0",
     "action": {
-      "default_popup": "index.html"
+      "default_popup": "index.html",
+      "default_icon": "favicon/favicon-16x16.png"
     }
   }
